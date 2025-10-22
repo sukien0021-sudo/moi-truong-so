@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Môi Trường Học Tập Số</title>
+  <style>
+    body { margin: 0; font-family: "Segoe UI", sans-serif; background: #f8fafc; color: #1f2937; }
+    header {
+      background: white;
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      position: sticky; top: 0;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .logo {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: linear-gradient(135deg,#0ea5a4,#3b82f6);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: bold; font-size: 18px;
+    }
+    nav a {
+      padding: 8px 14px; margin-left: 8px;
+      border-radius: 6px; text-decoration: none;
+      color: #374151; font-weight: 600; background: #f3f4f6;
+      transition: background .2s;
+    }
+    nav a:hover { background: #e5e7eb; }
+    main { padding: 32px; max-width: 800px; margin: auto; }
+    h1 { color: #1e40af; }
+  </style>
+</head>
+<body>
+
+  <!-- Thanh trên cùng -->
+  <header>
+    <div class="brand">
+      <div class="logo">ED</div>
+      <div>
+        <div style="font-weight:bold;">Môi Trường Học Tập Số</div>
+        <div style="font-size:12px; color:#6b7280;">Không gian học tập thông minh cho sinh viên</div>
+      </div>
+    </div>
+
+    <nav id="menu">
+      <a href="login.html">Đăng nhập</a>
+      <a href="signup.html">Đăng ký</a>
+    </nav>
+  </header>
+
+  <!-- Nội dung chính -->
+  <main>
+    <h1>Chào mừng đến với Môi Trường Học Tập Số!</h1>
+    <p>Nơi bạn có thể khám phá tài nguyên, khóa học, và công cụ học tập số dành riêng cho sinh viên thời đại 4.0.</p>
+    <p>👉 Hãy đăng nhập hoặc đăng ký để bắt đầu hành trình học tập thông minh cùng chúng tôi!</p>
+  </main>
+
+  <script>
+    // Nếu người dùng đã đăng nhập (localStorage), hiển thị tên
+    const username = localStorage.getItem("username");
+    if (username) {
+      document.getElementById("menu").innerHTML = `
+        <span>Xin chào, <b>${username}</b></span>
+        <a href="#" id="logout">Đăng xuất</a>
+      `;
+      document.getElementById("logout").addEventListener("click", () => {
+        localStorage.removeItem("username");
+        location.reload();
+      });
+    }
+  </script>
+
+</body>
+</html>
