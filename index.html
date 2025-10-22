@@ -1,103 +1,100 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Môi Trường Số Học Tập</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-
-    /* Thanh menu trên cùng */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 40px;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo div {
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      color: white;
-      font-weight: bold;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 18px;
-    }
-
-    .logo h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      margin: 0 12px;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      color: #0072ff;
-    }
-
-    .login-btn {
-      background: #0072ff;
-      color: white;
-      padding: 8px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    .login-btn:hover {
-      background: #005ad1;
-    }
-
-    /* Trang trống */
-    main {
-      text-align: center;
-      padding: 100px 20px;
-      color: #777;
-      font-size: 18px;
-    }
+    :root{--blue:#0072ff;--blue-dark:#005ad1}
+    body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:#f9fafb;color:#111}
+    header{display:flex;justify-content:space-between;align-items:center;padding:12px 28px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.05);position:sticky;top:0;z-index:100}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .mark{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#00c6ff,#0072ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px}
+    .brand .title{line-height:1}
+    .brand .title .name{font-weight:700;font-size:16px}
+    .brand .title .tag{font-size:12px;color:#6b7280}
+    nav#menu{display:flex;align-items:center;gap:10px}
+    nav#menu a{color:#222;text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    nav#menu a:hover{background:#f1f5f9;color:var(--blue)}
+    .btn-login{background:var(--blue);color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+    .btn-login:hover{background:var(--blue-dark)}
+    main{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:40px 16px;color:#6b7280}
+    .placeholder{max-width:880px;text-align:center}
+    .placeholder h2{color:#0f172a;margin:0 0 8px}
+    .placeholder p{margin:0}
+    @media(max-width:720px){nav#menu a{display:none}.mobile-links{display:flex;gap:8px}}
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">
-      <div>ED</div>
-      <h1>Môi Trường Số Học Tập</h1>
+    <div class="brand">
+      <div class="mark">ED</div>
+      <div class="title">
+        <div class="name">Môi Trường Số Học Tập</div>
+        <div class="tag">Tài nguyên — Khóa học — Cộng đồng</div>
+      </div>
     </div>
 
-    <nav>
-      <a href="#">Tính năng</a>
-      <a href="#">Khóa học</a>
-      <a href="#">Tài nguyên</a>
+    <!-- menu: lưu ý id để script thao tác -->
+    <nav id="menu">
+      <a href="index.html">Trang chủ</a>
       <a href="community.html">Cộng đồng</a>
-      <a href="login.html" class="login-btn">Đăng nhập</a>
+      <a href="page3.html">Khám phá</a>
+      <a href="login.html" id="loginLink" class="btn-login">Đăng nhập</a>
     </nav>
   </header>
 
   <main>
-    Trang chủ hiện chưa có nội dung. Bạn có thể thêm phần giới thiệu, hình ảnh, hoặc tiện ích học tập tại đây.
+    <div class="placeholder">
+      <h2>Trang chủ hiện tại đang rỗng</h2>
+      <p>Thanh điều hướng đã sẵn sàng. Bạn có thể thêm nội dung cho trang này sau — khi cần mình sẽ giúp thiết kế từng phần nhỏ theo yêu cầu.</p>
+    </div>
   </main>
+
+  <script>
+    // An toàn: chỉ chạy khi DOM đã sẵn
+    (function(){
+      // đổi menu khi có user đăng nhập lưu trong localStorage
+      try {
+        var username = localStorage.getItem('username') || null;
+        var menu = document.getElementById('menu');
+        if (!menu) return;
+
+        if (username) {
+          // tạo phần hiển thị người dùng + nút đăng xuất
+          // làm đơn giản, không phụ thuộc vào framework
+          var span = document.createElement('span');
+          span.style.marginLeft = '10px';
+          span.style.fontWeight = '600';
+          span.textContent = 'Xin chào, ' + username;
+
+          var logout = document.createElement('a');
+          logout.href = '#';
+          logout.textContent = 'Đăng xuất';
+          logout.style.marginLeft = '8px';
+          logout.style.fontWeight = '700';
+          logout.addEventListener('click', function(e){
+            e.preventDefault();
+            localStorage.removeItem('username');
+            // nhỏ: nếu bạn muốn cũng xóa danh sách users thì bỏ comment:
+            // localStorage.removeItem('users');
+            location.reload();
+          });
+
+          // ẩn nút đăng nhập hiện có (nếu còn)
+          var loginEl = document.getElementById('loginLink');
+          if (loginEl) loginEl.style.display = 'none';
+
+          menu.appendChild(span);
+          menu.appendChild(logout);
+        }
+      } catch (err) {
+        // Nếu có lỗi gì, log vào console để bạn hoặc mình dễ debug
+        console.error('Menu script error:', err);
+      }
+    })();
+  </script>
 
 </body>
 </html>
